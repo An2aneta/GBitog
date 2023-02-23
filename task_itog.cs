@@ -1,44 +1,50 @@
-﻿string[] strArr = {"hello", "world", "2", "-2", "computer science", ":-)"};
-int count = 0;
-string strTmp = "";
-string result = "[ ";
-
-
-for(int i=0; i < strArr.Length; i++ )
+﻿string[] FormNewArray(string[] array)
 {
-    strTmp = strArr[i];
+  int count = 0;
+  string strTmp = "";
+  for(int i=0; i < array.Length; i++ )
+  {
+    strTmp = array[i];
     if (strTmp.Length <= 3) count ++;
-}
+  }
 
-string[] strFin = new string[count];
-int j = 0;
-for(int i=0; i<strArr.Length; i++ )
-{
-    strTmp = strArr[i];
+  string[] resultArray = new string[count];
+  int j = 0;
+  for(int i=0; i<array.Length; i++ )
+  {
+    strTmp = array[i];
     if (strTmp.Length <= 3)
     {
-        strFin[j] = strTmp;
+        resultArray[j] = strTmp;
         j ++;
     } 
-        
+  }
+return resultArray;
 }
+ 
+string PrintArray(string[] array)
+  {
+    int i = 0;
+    string result = "[ ";
 
-    j = 0;
-    while (j < strArr.Length - 1)
+    while (i < array.Length)
     {
-      result += ($"'{strArr[j]}', ");
-      j++;
+      if (i == array.Length-1)
+       {
+        result += ($"'{array[i]}'");
+        i++;
+       }
+       else
+       {
+        result += ($"'{array[i]}', ");
+        i++;
+       } 
     }
-    result += ($"'{strArr[strArr.Length - 1]}' ] -> [ ");
+    return result + "]";
+  }
 
-     j = 0;
-    while (j < strFin.Length - 1)
-    {
-      result += ($"'{strFin[j]}', ");
-      j++;
-    }
-    result += ($"'{strFin[strFin.Length - 1]}' ]");
-
-    Console.WriteLine(result);
+string[] strArr = {"hello", "world", "2", "-2", "computer science", ":-)"};
 
 
+Console.WriteLine(PrintArray(strArr));
+Console.WriteLine(PrintArray(FormNewArray(strArr)));
